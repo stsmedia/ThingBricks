@@ -1,0 +1,42 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+module:testrunner
+
+GET     /accounts                                                   AccountController.All
+GET     /accounts/:id                                               AccountController.One
+POST    /accounts                                                   AccountController.Add
+PUT     /accounts/:id                                               AccountController.Update
+DELETE  /accounts/:id                                               AccountController.Delete
+
+GET     /accounts/:accountId/groups                                 AccountGroupController.FindByAccount
+GET     /accounts/:accountId/groups/:id                             AccountGroupController.One
+POST    /accounts/:accountId/groups                                 AccountGroupController.Add
+PUT     /accounts/:accountId/groups/:id                             AccountGroupController.Update
+DELETE  /accounts/:accountId/groups/:id                             AccountGroupController.Delete
+
+GET     /accounts/:accountId/groups/:groupId/logins                 LoginController.FindByAccountGroup
+POST    /signin                                                     LoginController.Signin
+DELETE  /accounts/:accountId/groups/:groupId/logins/:loginId        LoginController.Delete
+
+GET     /accounts/:accountId/projects                               ProjectController.FindByAccount
+GET     /accounts/:accountId/projects/:id                           ProjectController.One
+POST    /accounts/:accountId/projects                               ProjectController.Add
+PUT     /accounts/:accountId/projects/:id                           ProjectController.Update
+DELETE  /accounts/:accountId/projects/:id                           ProjectController.Delete
+
+GET     /accounts/:accountId/projects/:projectId/datastreams        DataStreamController.FindByProject
+GET     /accounts/:accountId/projects/:projectId/datastreams/:id    DataStreamController.One
+POST    /accounts/:accountId/projects/:projectId/datastreams        DataStreamController.Add
+PUT     /accounts/:accountId/projects/:projectId/datastreams/:id    DataStreamController.Update
+DELETE  /accounts/:accountId/projects/:projectId/datastreams/:id    DataStreamController.Delete
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/*filepath                       Static.Serve("public")
+
+# Catch all
+*       /:controller/:action                    :controller.:action
