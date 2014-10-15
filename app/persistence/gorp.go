@@ -27,6 +27,7 @@ func InitDb() {
 	Dbm.AddTableWithName(models.KeyPair{}, "api_keys").SetKeys(true, "Id")
 	Dbm.AddTableWithName(models.AccountGroup{}, "account_groups").SetKeys(true, "Id")
 	Dbm.AddTableWithName(models.Project{}, "projects").SetKeys(true, "Id")
+	Dbm.AddTableWithName(models.DataStreamGroup{}, "data_stream_groups").SetKeys(true, "Id")
 	Dbm.AddTableWithName(models.DataStream{}, "data_streams").SetKeys(true, "Id")
 
 	err = Dbm.CreateTablesIfNotExists()

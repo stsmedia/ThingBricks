@@ -1,9 +1,9 @@
 package services
 
 import (
+	"github.com/nu7hatch/gouuid"
 	"github.com/stsmedia/thingbricks/app/models"
 	"github.com/stsmedia/thingbricks/app/persistence"
-	"github.com/nu7hatch/gouuid"
 )
 
 type ApiKeyService struct {
@@ -31,7 +31,7 @@ func (a *ApiKeyService) Delete(loginId int64, accessKey string) bool {
 }
 
 func createUUID() string {
-	id, err := uuid.NewV4();
+	id, err := uuid.NewV4()
 	checkErr(err, "Unable to generate UUID")
 	return id.String()
 }

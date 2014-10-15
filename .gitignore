@@ -27,3 +27,5 @@ atlassian-ide-plugin.xml
 *.iml
 
 app/tmp*
+
+.idea/*

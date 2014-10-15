@@ -13,12 +13,12 @@ type DataStreamController struct {
 	DataStreamService *services.DataStreamService `inject:""`
 }
 
-func (c *DataStreamController) FindByProject(accountId int64, projectId int64) revel.Result {
-	return c.RenderJson(c.DataStreamService.FindByProject(accountId, projectId))
+func (c *DataStreamController) FindByGroup(accountId int64, projectId int64, dataStreamGroupId int64) revel.Result {
+	return c.RenderJson(c.DataStreamService.FindByProject(accountId, projectId, dataStreamGroupId))
 }
 
-func (c *DataStreamController) One(accountId int64, projectId int64, id int64) revel.Result {
-	return c.RenderJson(c.DataStreamService.FindOne(accountId, projectId, id))
+func (c *DataStreamController) One(accountId int64, projectId int64, dataStreamGroupId int64, id int64) revel.Result {
+	return c.RenderJson(c.DataStreamService.FindOne(accountId, projectId, dataStreamGroupId, id))
 }
 
 func (a *DataStreamController) Add() revel.Result {
@@ -61,6 +61,6 @@ func (a *DataStreamController) Update(id int64) revel.Result {
 	return a.RenderJson(&dataStream)
 }
 
-func (c *DataStreamController) Delete(accountId int64, projectId int64, id int64) revel.Result {
-	return c.RenderJson(c.DataStreamService.Delete(accountId, projectId, id))
+func (c *DataStreamController) Delete(accountId int64, projectId int64, dataStreamGroupId int64, id int64) revel.Result {
+	return c.RenderJson(c.DataStreamService.Delete(accountId, projectId, dataStreamGroupId, id))
 }

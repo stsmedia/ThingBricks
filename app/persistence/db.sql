@@ -108,6 +108,29 @@ WITH (
 ALTER TABLE projects
   OWNER TO thingbricks;
 
+
+/****************************************
+********* Data Stream Groups ************
+****************************************/
+
+CREATE TABLE data_stream_groups
+(
+  id bigserial NOT NULL,
+  version bigint,
+  created bigint,
+  updated bigint,
+  name text,
+  description text,
+  project_id bigint,
+  account_id bigint,
+  CONSTRAINT data_stream_groups_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE data_stream_groups
+  OWNER TO thingbricks;
+
 /****************************************
 ************ Data Streams ***************
 ****************************************/
@@ -122,6 +145,7 @@ CREATE TABLE data_streams
   description text,
   project_id bigint,
   account_id bigint,
+  data_stream_group_id bigint,
   CONSTRAINT data_streams_pkey PRIMARY KEY (id)
 )
 WITH (

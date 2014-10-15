@@ -17,4 +17,3 @@ func (t *LoginTests) TestDeleteAccountGroup() {
 	t.Delete("/accounts/1/groups/1/logins/1")
 	t.AssertOk()
 }
-

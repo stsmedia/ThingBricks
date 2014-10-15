@@ -36,7 +36,7 @@ angular.module('thingbricks')
         $scope.viewProject = function (project, edit) {
             $scope.selectedProject = project;
             $scope.showProjectForm = true;
-            $scope.editProjectForm = edit;
+            $scope.editProjectForm = !edit;
         }
         $scope.deleteProject = function (project) {
             projectService.delete(project)

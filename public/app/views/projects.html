@@ -7,7 +7,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example"
+                    <table class="table table-striped table-bordered table-hover"
                            ng-init="allProjects()">
                         <thead>
                         <tr>
@@ -29,7 +29,7 @@
                 <div class="well">
                     <h4>Project Information</h4>
                     <p>
-                        <button ng-show="!showProjectForm" ng-click="showProjectForm = true">Add New Project</button>
+                        <button ng-show="!showProjectForm" ng-click="showProjectForm = true" class="btn btn-default">Add New Project</button>
                     </p>
                     <div class="col-lg-12" ng-show="showProjectForm">
                         <div class="panel panel-default">
@@ -42,22 +42,79 @@
                                         <form role="form" ng-submit="addProject()" ng-show="showProjectForm">
                                             <div class="form-group">
                                                 <label>Project Name</label>
-                                                <input class="form-control" ng-model="selectedProject.name" ng-disabled="!editProjectForm">
+                                                <input class="form-control" ng-model="selectedProject.name" ng-disabled="editProjectForm">
                                             </div>
                                             <div class="form-group">
                                                 <label>Project Description</label>
                                                 <textarea class="form-control" rows="5"
-                                                          ng-model="selectedProject.description" ng-disabled="!editProjectForm"></textarea>
+                                                          ng-model="selectedProject.description" ng-disabled="editProjectForm"></textarea>
 
                                                 <p class="help-block">Nice project description</p>
                                             </div>
-                                            <div ng-show="editProjectForm">
+                                            <div ng-show="!editProjectForm">
                                                 <button type="submit" class="btn btn-default">
                                                     Create
                                                 </button>
                                                 <button type="reset" class="btn btn-default" ng-click="resetForm()">Cancel</button>
                                             </div>
-                                            <button type="reset" class="btn btn-default" ng-show="!editProjectForm" ng-click="showProjectForm = false; selectedProject = null">Close</button>
+                                            <button type="reset" class="btn btn-default" ng-show="editProjectForm" ng-click="showProjectForm = false; selectedProject = null">Close</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default" ng-show="selectedProject.name.length > 0" ng-controller="DataStreamCtrl">
+                            <div class="panel-heading">
+                                Data Streams
+                            </div>
+                            <div class="panel-body">
+                                <div class="row" >
+                                    <div class="col-lg-6">
+                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example"
+                                               ng-init="allDataStreams()">
+                                            <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr class="odd gradeX" ng-repeat="dataStream in dataStreams">
+                                                <td>{{dataStream.name}}</td>
+                                                <td>{{dataStream.description}}</td>
+                                                <td><a ng-click="viewDataStream(dataStream, false)">View</a> | <a ng-click="viewDataStream(dataStream, true)">Update</a> | <a ng-click="deleteDataStream(dataStream, selectedProject)">Delete</a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p>
+                                        <button ng-show="!showDataStreamForm" ng-click="showDataStreamForm = true" class="btn btn-default">Add New Data Stream</button>
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <form role="form" ng-submit="addDataStream()" ng-show="showDataStreamForm">
+                                            <div class="form-group">
+                                                <label>Data Stream Name</label>
+                                                <input class="form-control" ng-model="selectedDataStream.name" ng-disabled="editDataStreamForm">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>DataStream Description</label>
+                                                <textarea class="form-control" rows="5"
+                                                          ng-model="selectedDataStream.description" ng-disabled="editDataStreamForm"></textarea>
+
+                                                <p class="help-block">Nice data Stream description</p>
+                                            </div>
+                                            <div ng-show="!editDataStreamForm">
+                                                <button type="submit" class="btn btn-default">
+                                                    Create
+                                                </button>
+                                                <button type="reset" class="btn btn-default" ng-click="resetForm()">Cancel</button>
+                                            </div>
+                                            <button type="reset" class="btn btn-default" ng-show="editDataStreamForm" ng-click="showDataStreamForm = false; selectedDataStream = null">Close</button>
                                         </form>
                                     </div>
                                 </div>
@@ -66,9 +123,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /.panel-body -->
         </div>
-        <!-- /.panel -->
     </div>
-    <!-- /.col-lg-12 -->
 </div>

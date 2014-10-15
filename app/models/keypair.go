@@ -27,7 +27,8 @@ func (k *KeyPair) ToString() string {
 
 // implement the PreInsert and PreUpdate hooks
 func (k *KeyPair) PreInsert(s gorp.SqlExecutor) error {
-	hash, err := bcrypt.GenerateFromPassword([]byte(k.Secret), bcrypt.DefaultCost); if err != nil {
+	hash, err := bcrypt.GenerateFromPassword([]byte(k.Secret), bcrypt.DefaultCost)
+	if err != nil {
 		revel.ERROR.Println("unable to create has for password")
 	}
 	k.Created = time.Now().UnixNano()
